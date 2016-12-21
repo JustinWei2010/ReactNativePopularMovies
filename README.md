@@ -23,9 +23,9 @@ react-native run-ios
 react-native run-android
 ```
 
-> Fix android [bug]((http://stackoverflow.com/questions/36293577/syntaxerror-strict-mode-does-not-allow-function-declarations-in-a-lexically-nes)) before running app on android
+> Fix android [bug](http://stackoverflow.com/questions/36293577/syntaxerror-strict-mode-does-not-allow-function-declarations-in-a-lexically-nes) before running app on android
 
->Make sure to fill in the API key in app/constants/index.js before running the app.
+> Make sure to fill in the API key in app/constants/index.js before running the app.
 
 ----
 ##Useful links:
