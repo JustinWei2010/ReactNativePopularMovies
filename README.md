@@ -15,8 +15,8 @@ npm install -g react-native-cli
 ###Run code:
 
 ```
-git clone https://github.com/JustinWei2010/ReactNativeTutorial.git
-cd ReactNativeTutorial
+git clone https://github.com/JustinWei2010/ReactNativePopularMovies.git
+cd ReactNativePopularMovies
 npm install
 react-native link react-native-vector-icons
 react-native run-ios
