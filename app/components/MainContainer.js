@@ -1,35 +1,34 @@
 'use strict'
 import React, { Component } from 'react'
-import SideBar from 'components/SideBar'
-import AppNavigator from 'navigation/AppNavigator'
 import Drawer from 'react-native-drawer'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as Navigation from 'actions/Navigation'
+
+import * as Settings from 'actions/Settings'
+import SideBar from 'components/SideBar'
+import AppNavigator from 'navigation/AppNavigator'
 
 class MainContainer extends Component {
 
+    constructor(props) {
+        super(props)
+        //Load settings for rest of app, works if first page does not depend on settings
+        props.actions.loadSettings()
+    }
+
     render() {
-        const drawerActions = {
-            openDrawer: this._openDrawer,
-            closeDrawer: this._closeDrawer
-        }
         return (
             <Drawer
                 ref={(ref) => { this._drawer = ref; }}
                 type="static"
                 content={
                     <SideBar 
-                        closeDrawer={this._closeDrawer}
-                        {...this.props.navigateActions} />
+                        closeDrawer={this._closeDrawer} />
                 }
                 tapToClose={true}
                 openDrawerOffset={100}>
                 <AppNavigator 
-                    drawerActions={drawerActions}
-                    navigateActions={this.props.navigateActions}
-                    currentScreen={this.props.currentScreen}
-                    backStack={this.props.backStack} />
+                    openDrawer={this._openDrawer} />
             </Drawer>
         )
     }
@@ -43,11 +42,8 @@ class MainContainer extends Component {
     }
 }
 
-export default connect(state => ({
-        currentScreen: state.navigation.currentScreen,
-        backStack: state.navigation.backStack
-    }),
+export default connect(state => ({}),
     (dispatch) => ({
-        navigateActions: bindActionCreators(Navigation, dispatch)
+        actions: bindActionCreators(Settings, dispatch)
     })
 )(MainContainer)

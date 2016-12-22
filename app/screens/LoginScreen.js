@@ -1,21 +1,16 @@
 'use strict'
+import { Container, Text, View } from 'native-base'
 import React, { Component } from 'react'
 import { Image, ScrollView } from 'react-native'
-import { Container, Text, View } from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PlatformStyleSheet from 'styles/PlatformStyleSheet'
+
 import * as constants from 'constants'
-import * as settings from 'actions/Settings'
+import * as Login from 'actions/Login'
 
 class LoginScreen extends Component {
-
-    constructor(props) {
-        super(props)
-        //Load settings for rest of app, assumes this is always first page
-        props.actions.loadSettings()
-    }
 
     render() {
         return (
@@ -28,8 +23,8 @@ class LoginScreen extends Component {
                     </View>
                     <Icon.Button 
                         name='facebook'
-                        backgroundColor='#2196F3'
-                        onPress={this._loginWithFacebook}>
+                        backgroundColor='#3b5998'
+                        onPress={this._onPressFacebookButton}>
                         Login with Facebook
                     </Icon.Button>
                 </View>
@@ -37,11 +32,18 @@ class LoginScreen extends Component {
         )
     }
 
-    _loginWithFacebook = () => {
-        this.props.navigateTo(constants.SCREENS.HOME)
+    _onPressFacebookButton = () => {
+        this.props.actions.login()
     }
 
 }
+
+export default connect(state => ({
+    }),
+    (dispatch) => ({
+        actions: bindActionCreators(Login, dispatch)
+    })
+)(LoginScreen)
 
 const styles = PlatformStyleSheet.create({
 
@@ -63,10 +65,3 @@ const styles = PlatformStyleSheet.create({
     }
 
 })
-
-export default connect(state => ({
-    }),
-    (dispatch) => ({
-        actions: bindActionCreators(settings, dispatch)
-    })
-)(LoginScreen)

@@ -11,7 +11,6 @@ const navigation = (state = _initialState, action = {}) => {
     switch (action.type) {
         case types.NAVIGATE_TO:
             return {
-                ...state,
                 currentScreen: action.name,
                 backStack: [...state.backStack, action.name]
             }
@@ -19,10 +18,12 @@ const navigation = (state = _initialState, action = {}) => {
         case types.NAVIGATE_BACK:
             const newStack = state.backStack.slice(0, state.backStack.length-1)
             return {
-                ...state,
                 currentScreen: newStack[newStack.length-1],
                 backStack: newStack
             }
+
+        case types.CLEAR_NAVIGATE_STACK:
+            return _initialState
 
         default:
             return state;

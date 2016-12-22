@@ -10,14 +10,14 @@ const _formatMoviePosterJson = (movieJson) => {
 }
 
 const _initialState = {
-    posterSourceList: []
+    posterSourceList: [],
+    lastUpdated: null
 }
 
 const moviePosters = (state = _initialState, action = {}) => {
     switch (action.type) {
         case types.REFRESH_MOVIE_POSTERS:
             return {
-                ...state,
                 posterSourceList: _formatMoviePosterJson(action.json),
                 lastUpdated: action.receivedAt
             }

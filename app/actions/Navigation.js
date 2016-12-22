@@ -13,3 +13,9 @@ export const navigateBack = () => {
         type: types.NAVIGATE_BACK
     }
 }
+
+export const clearNavigateStack = () => {
+    return {
+        type: types.CLEAR_NAVIGATE_STACK
+    }
+}

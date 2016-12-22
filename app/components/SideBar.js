@@ -1,15 +1,21 @@
 'use strict'
 import React, { Component } from 'react';
 import { Image, Platform, StyleSheet, Dimensions } from 'react-native';
+import { LoginManager } from 'react-native-fbsdk'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { Content, Text, List, ListItem, Icon, View } from 'native-base';
+
 import * as constants from 'constants'
+import * as Login from 'actions/Login'
+import * as Navigation from 'actions/Navigation'
 
 const drawerCover = require('resources/drawer-cover.png');
 const drawerImage = require('resources/logo-kitchen-sink.png');
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
-export default class SideBar extends Component {
+class SideBar extends Component {
 
     render() {
         return (
@@ -18,7 +24,7 @@ export default class SideBar extends Component {
                     <Image square style={styles.drawerImage} source={drawerImage}/>
                 </Image>
                 <List>   
-                    <ListItem button iconLeft onPress={this._onSettingsButtonPress}>
+                    <ListItem button iconLeft onPress={this._onPressSettingsButton}>
                         <View style={styles.listItemContainer}>
                             <View style={[styles.iconContainer, { backgroundColor: '#0209D8', paddingLeft: 14 }]}>
                                 <Icon name="ios-phone-portrait-outline" style={styles.sidebarIcon} />
@@ -26,19 +32,36 @@ export default class SideBar extends Component {
                             <Text style={styles.text}>Settings</Text>
                         </View>
                     </ListItem>
+                    <ListItem button iconLeft onPress={this._onPressLogoutButton}>
+                        <View style={styles.listItemContainer}>
+                            <View style={[styles.iconContainer, { backgroundColor: '#4DCAE0', paddingLeft: 14 }]}>
+                                <Icon name="md-power" style={styles.sidebarIcon} />
+                            </View>
+                            <Text style={styles.text}>Logout</Text>
+                        </View>
+                    </ListItem>
                 </List>
             </Content>
         )
     }
 
-    _onSettingsButtonPress = () => {
+    _onPressSettingsButton = () => {
         this.props.closeDrawer()
-        this.props.navigateTo(constants.SCREENS.SETTINGS)
+        this.props.actions.navigateTo(constants.SCREENS.SETTINGS)
+    }
+
+    _onPressLogoutButton = () => {
+        this.props.closeDrawer()
+        this.props.actions.logout()
     }
 
 }
 
-
+export default connect(state => ({}),
+    (dispatch) => ({
+        actions: bindActionCreators({ ...Login, ...Navigation }, dispatch)
+    })
+)(SideBar)
 
 const styles = StyleSheet.create({
 

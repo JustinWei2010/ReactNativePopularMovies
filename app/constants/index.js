@@ -24,6 +24,10 @@ export const MOVIE_API = {
 }
 
 export const MOVIE_FILTERS = {
-    MOST_POPULAR: "MostPopular",
-    HIGHEST_RATED: "HighestRated"
+    MOST_POPULAR: 'MostPopular',
+    HIGHEST_RATED: 'HighestRated'
+}
+
+export const FB_PERMISSIONS = {
+    FRIENDS: 'user_friends'
 }

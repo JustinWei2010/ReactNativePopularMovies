@@ -4,17 +4,17 @@ import { Image, ScrollView } from 'react-native'
 import { Button, Container, Content, Header, Icon, List, ListItem, Title, Text, Radio } from 'native-base'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import * as constants from 'constants'
-import * as settings from 'actions/Settings'
+import * as Navigation from 'actions/Navigation'
+import * as Settings from 'actions/Settings'
 import PlatformStyleSheet from 'styles/PlatformStyleSheet'
-
-const mostPopularFilter = constants.MOVIE_FILTERS.MOST_POPULAR
-const highestRatedFilter = constants.MOVIE_FILTERS.HIGHEST_RATED
-
 
 class SettingsScreen extends Component {
 
     render() {
+        const mostPopularFilter = constants.MOVIE_FILTERS.MOST_POPULAR
+        const highestRatedFilter = constants.MOVIE_FILTERS.HIGHEST_RATED
         return (
             <Container style={styles.container}>
                 <Header>
@@ -28,7 +28,7 @@ class SettingsScreen extends Component {
                         <ListItem itemDivider>
                             <Text>Filter Movies By</Text>
                         </ListItem>                    
-                        <ListItem >
+                        <ListItem>
                             <Radio selected={this._isSelectedMovieFilter(mostPopularFilter)} 
                                 onPress={() => this._onSelectMovieFilter(mostPopularFilter)} />
                             <Text>Most Popular</Text>
@@ -45,14 +45,13 @@ class SettingsScreen extends Component {
     }
 
     _onClickBackButton = () => {
-        this.props.navigateBack()
+        this.props.actions.navigateBack()
     }
 
     _isSelectedMovieFilter = (filter) => {
-        return this.props.settings.movieFilter === filter
+        return (this.props.settings.movieFilter === filter)
     }
 
-    //Have to use arrow function to pass argument inline, might be limitation of ES6
     _onSelectMovieFilter = (filter) => {
         if (!this._isSelectedMovieFilter(filter)) {
             this.props.actions.saveSettings({
@@ -76,6 +75,6 @@ export default connect(state => ({
         settings: state.settings
     }),
     (dispatch) => ({
-        actions: bindActionCreators(settings, dispatch)
+        actions: bindActionCreators({ ...Navigation, ...Settings }, dispatch)
     })
 )(SettingsScreen)

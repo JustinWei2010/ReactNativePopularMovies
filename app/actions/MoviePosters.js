@@ -1,6 +1,5 @@
 'use strict'
 import * as types from 'actions/ActionTypes'
-import * as constants from 'constants'
 
 export const refreshMoviePosters = (json) => {
     return {
