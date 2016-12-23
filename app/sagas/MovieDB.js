@@ -4,14 +4,15 @@ import { call, put } from 'redux-saga/effects'
 import { fetchMoviePosters } from 'api/MovieDB'
 import * as constants from 'constants'
 import * as types from 'actions/ActionTypes'
+import * as LocalStorage from 'api/LocalStorage'
 import * as MovieDB from 'actions/MovieDB'
 
 const _saveMoviePosters = async(moviePosters) => {
-    await setItem(constants.STORAGE_KEY.MOVIE_POSTERS, moviePosters)
+    await LocalStorage.setItem(constants.STORAGE_KEY.MOVIE_POSTERS, moviePosters)
 }
 
 const _loadMoviePosters = async() => {
-    const moviePosters = await getItem(constants.STORAGE_KEY.MOVIE_POSTERS)
+    const moviePosters = await LocalStorage.getItem(constants.STORAGE_KEY.MOVIE_POSTERS)
     return moviePosters
 }
 
@@ -25,7 +26,7 @@ function* _fetchMoviePosters(action) {
         console.log("Couldn't fetch moviePosters from MovieDB api or save it in local storage")
     }
  
-    // Fetch from local storage if no json retrieved from api. Images not saved only api call.
+    // Fetch from local storage if no json retrieved from api. Images are not saved only the list returned from api.
     if (json === '[]') {
         try {
             json = yield call(_loadMoviePosters)

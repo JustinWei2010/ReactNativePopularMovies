@@ -2,9 +2,9 @@
 import _ from 'lodash'
 import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
-import { getItem, setItem } from 'storage/LocalStorage'
 import * as constants from 'constants'
 import * as types from 'actions/ActionTypes'
+import * as LocalStorage from 'api/LocalStorage'
 import * as Settings from 'actions/Settings'
 
 const _initialSettings = {
@@ -13,7 +13,7 @@ const _initialSettings = {
 
 function* _saveSettings(action) {
     try {
-        yield call(setItem, constants.STORAGE_KEY.SETTINGS, action.settings)
+        yield call(LocalStorage.setItem, constants.STORAGE_KEY.SETTINGS, action.settings)
         yield put(Settings.updateSettings(action.settings))
     } catch (error) {
         // Error saving settings
@@ -24,7 +24,7 @@ function* _saveSettings(action) {
 function* _loadSettings(action) {
     var settings = {}
     try {
-        settings = yield call(getItem, constants.STORAGE_KEY.SETTINGS)
+        settings = yield call(LocalStorage.getItem, constants.STORAGE_KEY.SETTINGS)
     } catch (error) {
         console.log("Couldn't load settings from local storage")
     }
