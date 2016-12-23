@@ -4,7 +4,7 @@ import { call, put } from 'redux-saga/effects'
 import { fetchMoviePosters } from 'api/MovieDB'
 import * as constants from 'constants'
 import * as types from 'actions/ActionTypes'
-import * as MoviePosters from 'actions/MoviePosters'
+import * as MovieDB from 'actions/MovieDB'
 
 const _saveMoviePosters = async(moviePosters) => {
     await setItem(constants.STORAGE_KEY.MOVIE_POSTERS, moviePosters)
@@ -34,7 +34,7 @@ function* _fetchMoviePosters(action) {
         }
     }
 
-    yield put(MoviePosters.refreshMoviePosters(json))
+    yield put(MovieDB.refreshMoviePosters(json))
 }
 
 export function* watchForFetchMoviePosters() {

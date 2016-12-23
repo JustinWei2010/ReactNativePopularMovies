@@ -1,13 +1,13 @@
 'use strict'
 import * as Facebook from 'sagas/Facebook'
-import * as MoviePosters from 'sagas/MoviePosters'
+import * as MovieDB from 'sagas/MovieDB'
 import * as Settings from 'sagas/Settings'
 
 export default function* rootSaga() {
     yield [
         Facebook.watchForLogin(),
         Facebook.watchForLogout(),
-        MoviePosters.watchForFetchMoviePosters(),
+        MovieDB.watchForFetchMoviePosters(),
         Settings.watchForSaveSettings(),
         Settings.watchForLoadSettings()
     ]

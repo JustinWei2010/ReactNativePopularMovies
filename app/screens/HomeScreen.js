@@ -7,7 +7,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as Constants from 'constants'
-import * as MoviePosters from 'actions/MoviePosters'
+import * as MovieDB from 'actions/MovieDB'
 import PlatformStyleSheet from 'styles/PlatformStyleSheet'
 
 class HomeScreen extends Component {
@@ -39,7 +39,7 @@ class HomeScreen extends Component {
                 </Header>
 
                 <ScrollView>
-                    {this._renderMoviePosters(this.props.posterSourceList)}
+                    {this._renderMoviePosters(this.props.posterSrcList)}
                 </ScrollView>
             </Container>
         )
@@ -79,6 +79,15 @@ class HomeScreen extends Component {
 
 }
 
+export default connect(state => ({
+        movieFilter: state.settings.movieFilter,
+        posterSrcList: state.moviePosters.posterSrcList
+    }),
+    (dispatch) => ({
+        actions: bindActionCreators(MovieDB, dispatch)
+    })
+)(HomeScreen)
+
 const styles = PlatformStyleSheet.create({
 
     container: {
@@ -97,12 +106,3 @@ const styles = PlatformStyleSheet.create({
     }
 
 })
-
-export default connect(state => ({
-        movieFilter: state.settings.movieFilter,
-        posterSourceList: state.moviePosters.posterSourceList
-    }),
-    (dispatch) => ({
-        actions: bindActionCreators(MoviePosters, dispatch)
-    })
-)(HomeScreen)
