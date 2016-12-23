@@ -6,9 +6,9 @@ import { connect } from 'react-redux'
 
 import * as Settings from 'actions/Settings'
 import SideBar from 'components/SideBar'
-import AppNavigator from 'navigation/AppNavigator'
+import AppNavigator from 'components/AppNavigator'
 
-class MainContainer extends Component {
+class AppContainer extends Component {
 
     constructor(props) {
         super(props)
@@ -46,4 +46,4 @@ export default connect(state => ({}),
     (dispatch) => ({
         actions: bindActionCreators(Settings, dispatch)
     })
-)(MainContainer)
+)(AppContainer)

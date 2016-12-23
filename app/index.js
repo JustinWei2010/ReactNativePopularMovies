@@ -6,7 +6,7 @@ import createSagaMiddleware from 'redux-saga'
 
 import * as reducers from 'reducers'
 import rootSaga from 'sagas'
-import MainContainer from 'components/MainContainer'
+import AppContainer from 'components/AppContainer'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
@@ -19,7 +19,7 @@ export default class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <MainContainer />
+                <AppContainer />
             </Provider>
         )
     }
