@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import PlatformStyleSheet from 'styles/PlatformStyleSheet'
 
 import * as constants from 'constants'
-import * as Login from 'actions/Login'
+import * as Facebook from 'actions/Facebook'
 
 class LoginScreen extends Component {
 
@@ -33,7 +33,7 @@ class LoginScreen extends Component {
     }
 
     _onPressFacebookButton = () => {
-        this.props.actions.login()
+        this.props.actions.fbLogin()
     }
 
 }
@@ -41,7 +41,7 @@ class LoginScreen extends Component {
 export default connect(state => ({
     }),
     (dispatch) => ({
-        actions: bindActionCreators(Login, dispatch)
+        actions: bindActionCreators(Facebook, dispatch)
     })
 )(LoginScreen)
 

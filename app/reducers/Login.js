@@ -10,27 +10,27 @@ const _initialState = {
 //Will need a way of reauthenticating token if it expires
 const login = (state = _initialState, action = {}) => {
     switch (action.type) {
-        case types.LOGIN:
+        case types.FB_LOGIN:
             return {
                 ...state,
                 authenticating: true
             }
 
-        case types.LOGIN_SUCCESS:
+        case types.FB_LOGIN_SUCCESS:
             return {
                 ...state,
                 authenticating: false,
                 fbToken: action.fbToken
             }
 
-        case types.LOGIN_FAILED:
+        case types.FB_LOGIN_FAILED:
             return {
                 ...state,
                 authenticating: false,
                 error: action.error
             }
 
-        case types.LOGOUT:
+        case types.FB_LOGOUT:
             return _initialState
 
         default:

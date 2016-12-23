@@ -14,8 +14,10 @@ export const LOAD_SETTINGS = 'LOAD_SETTINGS'
 export const REFRESH_MOVIE_POSTERS = 'REFRESH_MOVIE_POSTERS'
 export const FETCH_MOVIE_POSTERS = 'FETCH_MOVIE_POSTERS'
 
-//Login action types
-export const LOGIN = 'LOGIN'
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAILED = 'LOGIN_FAILED'
-export const LOGOUT = 'LOGOUT'
+//Facebook action types
+export const FB_LOGIN = 'FB_LOGIN'
+export const FB_LOGIN_SUCCESS = 'FB_LOGIN_SUCCESS'
+export const FB_LOGIN_FAILED = 'FB_LOGIN_FAILED'
+export const FB_LOGOUT = 'FB_LOGOUT'
+export const FB_FETCH_PROFILE = 'FB_FETCH_PROFILE'
+export const FB_REFRESH_PROFILE = 'FB_REFRESH_PROFILE'

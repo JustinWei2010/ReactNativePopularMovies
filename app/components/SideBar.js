@@ -1,28 +1,28 @@
 'use strict'
 import React, { Component } from 'react';
 import { Image, Platform, StyleSheet, Dimensions } from 'react-native';
-import { LoginManager } from 'react-native-fbsdk'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Content, Text, List, ListItem, Icon, View } from 'native-base';
+import { Content, Text, List, ListItem, Icon, Thumbnail, View } from 'native-base';
 
 import * as constants from 'constants'
-import * as Login from 'actions/Login'
+import * as Facebook from 'actions/Facebook'
 import * as Navigation from 'actions/Navigation'
-
-const drawerCover = require('resources/drawer-cover.png');
-const drawerImage = require('resources/logo-kitchen-sink.png');
-const deviceHeight = Dimensions.get('window').height;
-const deviceWidth = Dimensions.get('window').width;
 
 class SideBar extends Component {
 
     render() {
         return (
             <Content style={styles.sidebar}>
-                <Image source={drawerCover} style={styles.drawerCover}>
-                    <Image square style={styles.drawerImage} source={drawerImage}/>
-                </Image>
+                <View style={styles.profileContainer}>
+                    <View style={styles.profileIcon}>
+                        <Thumbnail size={60} source={this.props.profile.src} />
+                    </View>
+                    <View style={styles.profileInfo}>
+                        <Text style={styles.profileName}>{this.props.profile.name}</Text>
+                        <Text style={styles.profileViewEvents}>View events</Text>
+                    </View>
+                </View>
                 <List>   
                     <ListItem button iconLeft onPress={this._onPressSettingsButton}>
                         <View style={styles.listItemContainer}>
@@ -52,14 +52,16 @@ class SideBar extends Component {
 
     _onPressLogoutButton = () => {
         this.props.closeDrawer()
-        this.props.actions.logout()
+        this.props.actions.fbLogout()
     }
 
 }
 
-export default connect(state => ({}),
+export default connect(state => ({
+    profile: state.profile
+    }),
     (dispatch) => ({
-        actions: bindActionCreators({ ...Login, ...Navigation }, dispatch)
+        actions: bindActionCreators({ ...Facebook, ...Navigation }, dispatch)
     })
 )(SideBar)
 
@@ -70,20 +72,28 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
 
-    drawerCover: {
-        alignSelf: 'stretch',
-        height: deviceHeight / 3.5,
-        width: null,
-        position: 'relative',
-        marginBottom: 10,
+    profileContainer: {
+        flexDirection: 'row',
+        paddingVertical: 30
     },
-    drawerImage: {
-        position: 'absolute',
-        left: (Platform.OS === 'android') ? deviceWidth / 10 : deviceWidth / 9,
-        top: (Platform.OS === 'android') ? deviceHeight / 13 : deviceHeight / 12,
-        width: 210,
-        height: 75,
-        resizeMode: 'cover',
+
+    profileIcon: {
+        paddingHorizontal: 10,
+    },
+
+    profileInfo: {
+        paddingTop: 10,
+        paddingLeft: 10,
+        flexDirection: 'column'
+    },
+
+    profileName: {
+        fontSize: 18
+    },
+
+    profileViewEvents: {
+        fontSize: 14,
+        color: 'grey'
     },
 
     listItemContainer: {
@@ -91,7 +101,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center'
     },
-
+ 
     iconContainer: {
         width: 37,
         height: 37,
