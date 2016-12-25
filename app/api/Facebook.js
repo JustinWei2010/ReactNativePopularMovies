@@ -14,8 +14,8 @@ export const login = async(readPermissions) => {
     }
 }
 
-export const logout = () => {
-    LoginManager.logOut()
+export const logout = async() => {
+    await LoginManager.logOut()
 }
 
 export const getUserProfile = () => {

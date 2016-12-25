@@ -13,3 +13,7 @@ export const getItem = async(key) => {
     var value = await JSON.parse(json)
     return value
 }
+
+export const removeItem = async(key) => {
+    await AsyncStorage.removeItem(MAIN_STORE_NAME + ':' + key)
+}

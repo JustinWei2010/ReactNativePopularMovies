@@ -3,8 +3,8 @@ import * as types from 'actions/ActionTypes'
 import * as constants from 'constants'
 
 const _initialState = {
-    currentScreen: constants.SCREENS.LOGIN,
-    backStack: [constants.SCREENS.LOGIN]
+    currentScreen: '',
+    backStack: []
 }
 
 const navigation = (state = _initialState, action = {}) => {

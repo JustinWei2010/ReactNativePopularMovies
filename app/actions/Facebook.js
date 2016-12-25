@@ -27,12 +27,6 @@ export const fbLogout = () => {
     }
 }
 
-export const fbFetchProfile = () => {
-    return {
-        type: types.FB_FETCH_PROFILE
-    }
-}
-
 export const fbRefreshProfile = (name, src) => {
     return {
         type: types.FB_REFRESH_PROFILE,

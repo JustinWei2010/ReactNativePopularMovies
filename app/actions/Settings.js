@@ -2,9 +2,9 @@
 import * as types from 'actions/ActionTypes'
 
 //Used to update display related to setting changes
-export const updateSettings = (settings) => {
+export const refreshSettings = (settings) => {
     return {
-        type: types.UPDATE_SETTINGS,
+        type: types.REFRESH_SETTINGS,
         settings: settings
     }
 }
@@ -14,12 +14,5 @@ export const saveSettings = (settings) => {
     return {
         type: types.SAVE_SETTINGS,
         settings: settings
-    }
-}
-
-//Used to load settings from local storage
-export const loadSettings = () => {
-    return {
-        type: types.LOAD_SETTINGS
     }
 }

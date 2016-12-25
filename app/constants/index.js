@@ -12,7 +12,8 @@ export const TIMERS_MS = {
 
 export const STORAGE_KEY = {
     SETTINGS: 'Settings',
-    MOVIE_POSTERS: 'MoviePosters'
+    MOVIE_POSTERS: 'MoviePosters',
+    FB_TOKEN: 'FBToken'
 }
 
 export const MOVIE_API = {

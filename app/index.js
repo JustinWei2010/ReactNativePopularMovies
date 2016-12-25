@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 
 import * as reducers from 'reducers'
+import * as Init from 'sagas/Init'
 import rootSaga from 'sagas'
 import AppContainer from 'components/AppContainer'
 
@@ -14,6 +15,8 @@ const store = createStore(
     applyMiddleware(sagaMiddleware)
 )
 sagaMiddleware.run(rootSaga)
+//Initialize app before rendering
+sagaMiddleware.run(Init.initApp)
 
 export default class App extends Component {
     render() {

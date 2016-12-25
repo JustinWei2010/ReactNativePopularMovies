@@ -5,7 +5,7 @@ const _initialState = {}
 
 const settings = (state = _initialState, action = {}) => {
     switch (action.type) {
-        case types.UPDATE_SETTINGS:
+        case types.REFRESH_SETTINGS:
             return action.settings
         default:
             return state;

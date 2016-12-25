@@ -8,7 +8,6 @@ export default function* rootSaga() {
         Facebook.watchForLogin(),
         Facebook.watchForLogout(),
         MovieDB.watchForFetchMoviePosters(),
-        Settings.watchForSaveSettings(),
-        Settings.watchForLoadSettings()
+        Settings.watchForSaveSettings()
     ]
 }
