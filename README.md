@@ -23,9 +23,14 @@ react-native run-ios
 react-native run-android
 ```
 
+###Setup FBSDK:
+Follow directions for setting up FBSDK for both ios and android [here](https://github.com/facebook/react-native-fbsdk)
+
 > Fix android [bug](http://stackoverflow.com/questions/36293577/syntaxerror-strict-mode-does-not-allow-function-declarations-in-a-lexically-nes) before running app on android
 
 > Make sure to fill in the API key in app/constants/index.js before running the app.
+
+> Make sure to setup FBSDK steps before running the app. Code Changes should be done, some Xcode setup may be necessary.
 
 ----
 ##Useful links:
@@ -37,4 +42,4 @@ react-native run-android
 6. [Redux grocery list example](https://github.com/bruz/react-native-redux-groceries)
 7. [NativeBase](http://nativebase.io/)
 8. [ES6](http://es6-features.org/#Constants)
-
+9. [FBSDK](https://github.com/facebook/react-native-fbsdk)
