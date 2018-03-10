@@ -1,10 +1,10 @@
-#ReactNativePopularMovies
+# ReactNativePopularMovies
 This project was started to showcase some basic redux principles on a simple movie app. 
 
 ----
-##Project Setup
+## Project Setup
 
-###Setup react-native:
+### Setup react-native:
 
 ```
 brew install node
@@ -12,7 +12,7 @@ brew install watchman
 npm install -g react-native-cli
 ```
 
-###Run code:
+### Run code:
 
 ```
 git clone https://github.com/JustinWei2010/ReactNativePopularMovies.git
@@ -23,7 +23,7 @@ react-native run-ios
 react-native run-android
 ```
 
-###Setup FBSDK:
+### Setup FBSDK:
 Follow directions for setting up FBSDK for both ios and android [here](https://github.com/facebook/react-native-fbsdk)
 
 > Fix android [bug](http://stackoverflow.com/questions/36293577/syntaxerror-strict-mode-does-not-allow-function-declarations-in-a-lexically-nes) before running app on android
@@ -33,7 +33,7 @@ Follow directions for setting up FBSDK for both ios and android [here](https://g
 > Make sure to setup FBSDK steps before running the app. Code Changes should be done, some Xcode setup may be necessary.
 
 ----
-##Useful links:
+## Useful links:
 1. [Facebook react-native tutorial](https://facebook.github.io/react-native/docs/getting-started.html)
 2. [Redux videos](https://egghead.io/courses/getting-started-with-redux)
 3. [Redux documentation](http://redux.js.org/docs/introduction/)
